@@ -232,6 +232,7 @@ radius = 5.0
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
+position = Vector2(0, -1)
 script = ExtResource("1_7w423")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -246,5 +247,6 @@ shape = SubResource("CircleShape2D_l0e5n")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -3)
+zoom = Vector2(3, 3)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
