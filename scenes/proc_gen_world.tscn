@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckfgw3m5gabx2"]
+
+[ext_resource type="Script" path="res://scripts/proc_gen_world.gd" id="1_tbtk2"]
+[ext_resource type="TileSet" uid="uid://dyyo0qh6t7b1w" path="res://data/tileset.tres" id="2_hv48q"]
+[ext_resource type="PackedScene" uid="uid://ctssrutijdlt8" path="res://scenes/player.tscn" id="3_61eob"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yj8q3"]
+seed = 450
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3pmm0"]
+noise = SubResource("FastNoiseLite_yj8q3")
+
+[node name="proc_gen_world" type="Node2D"]
+script = ExtResource("1_tbtk2")
+noise_height_text = SubResource("NoiseTexture2D_3pmm0")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_hv48q")
+format = 2
+
+[node name="Player" parent="." instance=ExtResource("3_61eob")]
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+zoom = Vector2(0.3, 0.3)

@@ -13,7 +13,7 @@ var can_place_dirt_custom_data = "can_place_dirt"
 # tracks the different farming modes
 enum FARMING_MODES {
 	SEEDS,
-	DIRT
+	DIRT 
 }
 
 # init farming mode as place dirt
