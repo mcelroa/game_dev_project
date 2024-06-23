@@ -1,7 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://ctssrutijdlt8"]
+[gd_scene load_steps=37 format=3 uid="uid://ctssrutijdlt8"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_7w423"]
 [ext_resource type="Texture2D" uid="uid://blvufj8xws4mp" path="res://assets/Soldier.png" id="2_alk60"]
+[ext_resource type="Script" path="res://scripts/states/finite_state_machine.gd" id="3_lwex4"]
+[ext_resource type="Script" path="res://scripts/states/player_idle_state.gd" id="4_7xvnf"]
+[ext_resource type="Script" path="res://scripts/states/player_walk_state.gd" id="5_6v5lm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdl5t"]
 atlas = ExtResource("2_alk60")
@@ -230,6 +233,29 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_l0e5n"]
 radius = 5.0
 
+[sub_resource type="GDScript" id="GDScript_r7aui"]
+script/source = "class_name PlayerAttackState
+extends State
+
+@export var actor: Player
+@export var animator: AnimatedSprite2D
+
+signal finish_attack
+
+func _ready():
+	set_physics_process(false)
+
+func _enter_state() -> void:
+	set_physics_process(true)
+	animator.play(\"attack\")
+
+func _exit_state() -> void:
+	set_physics_process(false)
+
+func _on_animated_sprite_2d_animation_finished():
+	finish_attack.emit()
+"
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(0, -1)
@@ -249,4 +275,23 @@ shape = SubResource("CircleShape2D_l0e5n")
 position = Vector2(0, -3)
 zoom = Vector2(3, 3)
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
+script = ExtResource("3_lwex4")
+state = NodePath("PlayerIdleState")
+
+[node name="PlayerIdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator")]
+script = ExtResource("4_7xvnf")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+
+[node name="PlayerWalkState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator")]
+script = ExtResource("5_6v5lm")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+
+[node name="PlayerAttackState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator")]
+script = SubResource("GDScript_r7aui")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="FiniteStateMachine/PlayerAttackState" method="_on_animated_sprite_2d_animation_finished"]
