@@ -1,10 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://ctssrutijdlt8"]
+[gd_scene load_steps=33 format=3 uid="uid://ctssrutijdlt8"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_7w423"]
 [ext_resource type="Texture2D" uid="uid://blvufj8xws4mp" path="res://assets/Soldier.png" id="2_alk60"]
-[ext_resource type="Script" path="res://scripts/states/finite_state_machine.gd" id="3_lwex4"]
-[ext_resource type="Script" path="res://scripts/states/player_idle_state.gd" id="4_7xvnf"]
-[ext_resource type="Script" path="res://scripts/states/player_walk_state.gd" id="5_6v5lm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdl5t"]
 atlas = ExtResource("2_alk60")
@@ -241,7 +238,7 @@ script = ExtResource("1_7w423")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_yjsje")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -249,19 +246,3 @@ position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_l0e5n")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -3)
-zoom = Vector2(3, 3)
-
-[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
-script = ExtResource("3_lwex4")
-state = NodePath("PlayerIdleState")
-
-[node name="PlayerIdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator")]
-script = ExtResource("4_7xvnf")
-actor = NodePath("../..")
-animator = NodePath("../../AnimatedSprite2D")
-
-[node name="PlayerWalkState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator")]
-script = ExtResource("5_6v5lm")
-actor = NodePath("../..")
-animator = NodePath("../../AnimatedSprite2D")
