@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://cyece06c4qmgm"]
 
-[ext_resource type="Texture2D" uid="uid://d22qgydqqttkp" path="res://assets/tilemap/tilemap1.png" id="1_umsf2"]
-[ext_resource type="PackedScene" uid="uid://b1keuhbx02e38" path="res://scenes/components/farming_component.tscn" id="2_epycx"]
-[ext_resource type="PackedScene" uid="uid://ctssrutijdlt8" path="res://scenes/player.tscn" id="2_oubbw"]
+[ext_resource type="PackedScene" uid="uid://b1keuhbx02e38" path="res://Components/Farming/farming_component.tscn" id="1_aj6jc"]
+[ext_resource type="PackedScene" uid="uid://ctssrutijdlt8" path="res://Entities/Player/player.tscn" id="2_aq7yr"]
+[ext_resource type="Texture2D" uid="uid://d22qgydqqttkp" path="res://Common/tilemap1.png" id="3_xj7ji"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hfhse"]
-texture = ExtResource("1_umsf2")
+texture = ExtResource("3_xj7ji")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -1874,10 +1874,10 @@ sources/0 = SubResource("TileSetAtlasSource_hfhse")
 
 [node name="Main" type="Node2D"]
 
-[node name="FarmingComponent" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_epycx")]
+[node name="FarmingComponent" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("1_aj6jc")]
 tile_map = NodePath("../TileMap")
 
-[node name="Player" parent="." instance=ExtResource("2_oubbw")]
+[node name="Player" parent="." instance=ExtResource("2_aq7yr")]
 z_index = 1
 position = Vector2(268, 143)
 

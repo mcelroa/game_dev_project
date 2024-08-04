@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b1keuhbx02e38"]
 
-[ext_resource type="Script" path="res://scripts/components/farming_component.gd" id="1_uw1gn"]
+[ext_resource type="Script" path="res://Components/Farming/farming_component.gd" id="1_uw1gn"]
 
 [node name="FarmingComponent" type="Node2D"]
 script = ExtResource("1_uw1gn")
