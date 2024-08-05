@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var speed = 100
 
+@onready var interact_ui = $InteractUI
+
 func _ready():
 	Global.set_player_reference(self)
 

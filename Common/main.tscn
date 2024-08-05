@@ -1879,10 +1879,6 @@ sources/0 = SubResource("TileSetAtlasSource_hfhse")
 [node name="FarmingComponent" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("1_aj6jc")]
 tile_map = NodePath("../TileMap")
 
-[node name="Player" parent="." instance=ExtResource("2_aq7yr")]
-z_index = 1
-position = Vector2(268, 143)
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_o01q1")
 format = 2
@@ -1894,6 +1890,10 @@ layer_1/tile_data = PackedInt32Array(1048613, 720896, 6, 983077, 589824, 16, 917
 layer_2/name = "environment"
 layer_2/tile_data = PackedInt32Array(1310728, 589824, 0, 1179661, 589824, 0, 1114131, 589824, 0, 1245209, 589824, 0, 1376286, 589824, 0, 1245218, 589824, 0, 1114151, 589824, 0, 786471, 589824, 0, 458791, 589824, 0, 262187, 589824, 0, -65495, 589824, 0, -196575, 589824, 0, 24, 589824, 0, -196592, 589824, 0, -196597, 589824, 0, -65532, 589824, 0, 196607, 589824, 0, 655357, 589824, 0, 917504, 589824, 0, 1245187, 589824, 0)
 
+[node name="Player" parent="." instance=ExtResource("2_aq7yr")]
+z_index = 1
+position = Vector2(269, 135)
+
 [node name="Inventory_Item" parent="." instance=ExtResource("4_8tbyp")]
 position = Vector2(319, 124)
 item_type = "Type"
@@ -1903,3 +1903,7 @@ item_texture = ExtResource("5_n10qm")
 
 [node name="Inventory_Item2" parent="." instance=ExtResource("4_8tbyp")]
 position = Vector2(339, 144)
+item_type = "Type"
+item_name = "Name 1"
+item_effect = "None"
+item_texture = ExtResource("5_n10qm")
