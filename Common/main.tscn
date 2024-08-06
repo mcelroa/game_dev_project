@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyece06c4qmgm"]
+[gd_scene load_steps=9 format=3 uid="uid://cyece06c4qmgm"]
 
 [ext_resource type="PackedScene" uid="uid://b1keuhbx02e38" path="res://Components/Farming/farming_component.tscn" id="1_aj6jc"]
 [ext_resource type="PackedScene" uid="uid://ctssrutijdlt8" path="res://Entities/Player/player.tscn" id="2_aq7yr"]
 [ext_resource type="Texture2D" uid="uid://d22qgydqqttkp" path="res://Common/tilemap1.png" id="3_xj7ji"]
 [ext_resource type="PackedScene" uid="uid://mjeg652o6yjh" path="res://Inventory/inventory_item.tscn" id="4_8tbyp"]
-[ext_resource type="Texture2D" uid="uid://fnxp2vd5kgqu" path="res://Common/Icons/mushroom.png" id="5_n10qm"]
+[ext_resource type="Texture2D" uid="uid://sfhyn2mvk7eg" path="res://Common/Icons/icon1.png" id="5_ga65w"]
+[ext_resource type="Texture2D" uid="uid://b4prq76myld05" path="res://Common/Icons/icon10.png" id="6_bfemd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hfhse"]
 texture = ExtResource("3_xj7ji")
@@ -1895,15 +1896,15 @@ z_index = 1
 position = Vector2(269, 135)
 
 [node name="Inventory_Item" parent="." instance=ExtResource("4_8tbyp")]
-position = Vector2(319, 124)
-item_type = "Type"
-item_name = "Item 1"
-item_effect = "None"
-item_texture = ExtResource("5_n10qm")
+position = Vector2(312, 125)
+item_type = "Consume"
+item_name = "Potion"
+item_effect = "Health"
+item_texture = ExtResource("5_ga65w")
 
 [node name="Inventory_Item2" parent="." instance=ExtResource("4_8tbyp")]
-position = Vector2(339, 144)
-item_type = "Type"
-item_name = "Name 1"
-item_effect = "None"
-item_texture = ExtResource("5_n10qm")
+position = Vector2(315, 167)
+item_type = "Consume"
+item_name = "Staminup"
+item_effect = "Stamina"
+item_texture = ExtResource("6_bfemd")
