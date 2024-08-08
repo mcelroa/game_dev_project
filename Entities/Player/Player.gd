@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 40
+@export var speed = 80
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var interact_ui = $InteractUI
@@ -34,3 +34,10 @@ func update_animation():
 			animated_sprite.flip_h = true
 			animated_sprite.play("walk")
 			
+
+func apply_item_effect(item):
+	match item['effect']:
+		'Speed':
+			print('Speed Increased')
+		_:
+			print('Default no effect')

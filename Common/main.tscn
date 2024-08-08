@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyece06c4qmgm"]
+[gd_scene load_steps=8 format=3 uid="uid://cyece06c4qmgm"]
 
 [ext_resource type="PackedScene" uid="uid://b1keuhbx02e38" path="res://Components/Farming/farming_component.tscn" id="1_aj6jc"]
+[ext_resource type="Script" path="res://Common/main.gd" id="1_eyg8m"]
 [ext_resource type="PackedScene" uid="uid://ctssrutijdlt8" path="res://Entities/Player/player.tscn" id="2_aq7yr"]
 [ext_resource type="Texture2D" uid="uid://d22qgydqqttkp" path="res://Common/tilemap1.png" id="3_xj7ji"]
-[ext_resource type="PackedScene" uid="uid://mjeg652o6yjh" path="res://Inventory/inventory_item.tscn" id="4_8tbyp"]
-[ext_resource type="Texture2D" uid="uid://sfhyn2mvk7eg" path="res://Common/Icons/icon1.png" id="5_ga65w"]
-[ext_resource type="Texture2D" uid="uid://b4prq76myld05" path="res://Common/Icons/icon10.png" id="6_bfemd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hfhse"]
 texture = ExtResource("3_xj7ji")
@@ -1875,7 +1873,11 @@ custom_data_layer_1/name = "can_place_dirt"
 custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_hfhse")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkneh"]
+size = Vector2(300, 300)
+
 [node name="Main" type="Node2D"]
+script = ExtResource("1_eyg8m")
 
 [node name="FarmingComponent" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("1_aj6jc")]
 tile_map = NodePath("../TileMap")
@@ -1895,16 +1897,10 @@ layer_2/tile_data = PackedInt32Array(1310728, 589824, 0, 1179661, 589824, 0, 111
 z_index = 1
 position = Vector2(269, 135)
 
-[node name="Inventory_Item" parent="." instance=ExtResource("4_8tbyp")]
-position = Vector2(312, 125)
-item_type = "Consume"
-item_name = "Potion"
-item_effect = "Health"
-item_texture = ExtResource("5_ga65w")
+[node name="Items" type="Node2D" parent="."]
 
-[node name="Inventory_Item2" parent="." instance=ExtResource("4_8tbyp")]
-position = Vector2(315, 167)
-item_type = "Consume"
-item_name = "Staminup"
-item_effect = "Stamina"
-item_texture = ExtResource("6_bfemd")
+[node name="ItemSpawnArea" type="Area2D" parent="."]
+position = Vector2(315, 134)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemSpawnArea"]
+shape = SubResource("RectangleShape2D_nkneh")

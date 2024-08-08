@@ -4,6 +4,13 @@ var inventory = []
 
 signal inventory_updated
 
+var spawnable_items = [
+	{'type': 'Consumable', 'name': 'Berry', 'effect': 'Health', 'texture': preload("res://Common/Icons/icon31.png")},
+	{'type': 'Consumable', 'name': 'Water', 'effect': 'Stamina', 'texture': preload("res://Common/Icons/icon9.png")},
+	{'type': 'Consumable', 'name': 'Mushroom', 'effect': 'Armor', 'texture': preload("res://Common/Icons/icon32.png")},
+	{'type': 'Gift', 'name': 'Gemstone', 'effect': '', 'texture': preload("res://Common/Icons/icon21.png")},
+]
+
 var player_node: Node = null
 @onready var inventory_slot_scene = preload('res://Inventory/inventory_slot.tscn')
 
@@ -38,7 +45,7 @@ func set_player_reference(player):
 	player_node = player
 	
 func adjust_drop_position(position):
-	var radius = 100
+	var radius = 50
 	var nearby_items = get_tree().get_nodes_in_group('items')
 	for item in nearby_items:
 		if item.global_position.distance_to(position) < radius:
